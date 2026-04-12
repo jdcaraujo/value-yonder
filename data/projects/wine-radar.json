@@ -1,0 +1,20 @@
+{
+  "name": "Wine Radar",
+  "screenshot": "images/projects/wine-radar.jpg",
+  "org": "Side project",
+  "status": "active",
+  "stage": "Running",
+  "description": "Price comparison for Portuguese wines. Scrapes retailers, normalises data, and gives wine buyers a cleaner way to find the best price on a bottle they already know they want.",
+  "last_updated": "2026-04-08",
+  "metrics": [
+    {
+      "label": "Stage",
+      "value": "Live"
+    },
+    {
+      "label": "Effort",
+      "value": "Lean"
+    }
+  ],
+  "latest": "Mostly running on its own. Occasionally useful, occasionally neglected. Simple product, real use case."
+}

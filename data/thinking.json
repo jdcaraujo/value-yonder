@@ -1,0 +1,172 @@
+[
+  {
+    "domain": "On AI",
+    "entries": [
+      {
+        "id": "ai-value-formula",
+        "thesis": "AI value = automation scope × task cost × frequency. Most quick wins are illusions.",
+        "expansion": "The chatbot that helps you navigate a UI is not a product — it's a feature. Real AI value comes from automating expensive, frequent work that was previously non-deterministic. Most \"AI-powered\" products fail Aaron Levie's three-axis test.",
+        "links": [
+          {"text": "Three Axes of AI Opportunity", "url": "/essays/axes-of-opportunity-for-ai/"}
+        ],
+        "confidence": "High",
+        "held_since": "2023",
+        "revision_history": []
+      },
+      {
+        "id": "ai-data-model-moat",
+        "thesis": "The companies that win with AI won't just have better models. They'll own their core data model.",
+        "expansion": "Every AI API needs something to connect to. That's not a database, not a data lake, not a warehouse — it's a living, structured data model that captures the company's reality. The moat isn't the AI; it's the data underneath it.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2023",
+        "revision_history": []
+      },
+      {
+        "id": "ai-real-products",
+        "thesis": "True AI products automate expensive, frequent, non-deterministic work — not chatbot wrappers.",
+        "expansion": "If the job was already cheap, fast, or deterministic, AI doesn't change the economics. The opportunity is in the jobs that were genuinely hard to scale: complex routing, nuanced synthesis, judgment-heavy decisions at volume.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2023",
+        "revision_history": []
+      }
+    ]
+  },
+  {
+    "domain": "On Product",
+    "entries": [
+      {
+        "id": "never-start-with-solution",
+        "thesis": "Never start with a solution.",
+        "expansion": "Smart, ambitious teams start with a problem. When you hand a PM a pre-defined solution to articulate, you either get a short-sighted vision or a shot in the dark. The product comes from the collision — tech, design, and product in a room, arguing about the problem.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2020",
+        "revision_history": []
+      },
+      {
+        "id": "domain-expertise-minus-dogma",
+        "thesis": "True domain expertise = domain knowledge minus domain dogma.",
+        "expansion": "Deep immersion in a domain makes it increasingly hard to distinguish what you know from what you merely assume. The most dangerous experts are the ones who can't tell the difference. Real expertise means holding your assumptions lightly even when you've earned the right not to.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2020",
+        "revision_history": []
+      },
+      {
+        "id": "decisions-closest-to-evidence",
+        "thesis": "The best product decisions are made closest to the evidence.",
+        "expansion": "Hierarchy optimizes for consistency, not insight. The person who talked to ten customers this week knows something the committee doesn't.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2021",
+        "revision_history": []
+      }
+    ]
+  },
+  {
+    "domain": "On Strategy",
+    "entries": [
+      {
+        "id": "innovation-in-big-companies",
+        "thesis": "Most innovation comes from big companies, not startups. The problem isn't creativity — it's context.",
+        "expansion": "Contrary to the startup mythology, enterprise is where most commercially successful innovation happens. The constraint isn't ideas — it's building the internal context where innovation can survive. Metered funding beats big budget bets. Executive sponsorship beats permission.",
+        "links": [
+          {"text": "Innovation Happens in Big Companies", "url": "/essays/innovation-happens-in-big-corporates/"}
+        ],
+        "confidence": "High",
+        "held_since": "2022",
+        "revision_history": []
+      },
+      {
+        "id": "strategy-redefine-game",
+        "thesis": "Strategy is about redefining the game, not playing it better.",
+        "expansion": "Conventional strategy logic says: build advantages, serve customers better, leverage what you have. Value innovation logic says: make the competition irrelevant. The best strategic moves don't optimize within the current rules — they change what the game is.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2021",
+        "revision_history": []
+      },
+      {
+        "id": "same-game-losing",
+        "thesis": "If you're playing the same game as your competitors, you're already losing.",
+        "expansion": "Differentiation within a category is a treadmill. The durable moves are the ones that escape the category entirely — new customer set, new value equation, new rules.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2021",
+        "revision_history": []
+      }
+    ]
+  },
+  {
+    "domain": "On Organizations",
+    "entries": [
+      {
+        "id": "builders-and-farmers",
+        "thesis": "Builders and farmers can't share the same room for long.",
+        "expansion": "Builders optimize for flexibility and creativity. Farmers optimize for predictability and process. Both are necessary. Neither can succeed under the same incentives, timelines, or leadership expectations. The mistake is pretending they can.",
+        "links": [
+          {"text": "Builders and Farmers", "url": "/essays/builders-and-farmers-in-tech-companies/"}
+        ],
+        "confidence": "High",
+        "held_since": "2022",
+        "revision_history": []
+      },
+      {
+        "id": "technology-amplifies-culture",
+        "thesis": "Technology amplifies culture. It doesn't create it.",
+        "expansion": "Implementing new tools in a dysfunctional organization produces a faster, more efficient version of the dysfunction. Culture change has to precede — or at least accompany — technology change, not follow from it.",
+        "links": [
+          {"text": "Notes on the Future of Work", "url": "/essays/notes-on-the-future-of-work/"}
+        ],
+        "confidence": "High",
+        "held_since": "2022",
+        "revision_history": []
+      },
+      {
+        "id": "team-energy-resource",
+        "thesis": "A team's energy is a resource. It depletes.",
+        "expansion": "This is underrated in strategy conversations. You can have the right market, the right product, the right team — and still lose, because the team's reserves ran out before the business had time to work.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2020",
+        "revision_history": []
+      }
+    ]
+  },
+  {
+    "domain": "On Founding",
+    "entries": [
+      {
+        "id": "startups-run-out-of-energy",
+        "thesis": "Startups don't run out of money. They run out of energy.",
+        "expansion": "The narrative around startup failure centers on funding, market timing, competition. The real story is often simpler: the founding team exhausted itself climbing walls they couldn't see the top of. When the CEO's energy ends, it's an epitaph.",
+        "links": [
+          {"text": "What I Learned Shutting Down My Startup", "url": "/essays/attentives-farewell/"}
+        ],
+        "confidence": "High",
+        "held_since": "2019",
+        "revision_history": []
+      },
+      {
+        "id": "swing-and-a-miss",
+        "thesis": "A swing and a miss, but what a swing.",
+        "expansion": "What Attentive's Techstars MD said to us on the last day in Boulder. I've held on to it. The output is not always within your control; the commitment to swing is.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2019",
+        "revision_history": []
+      },
+      {
+        "id": "reference-customer-proof",
+        "thesis": "The value of a reference customer is not the revenue. It's the proof.",
+        "expansion": "Early-stage sales aren't about ARR — they're about evidence. One logo that proves the hypothesis is worth more than ten that obscure it.",
+        "links": [],
+        "confidence": "High",
+        "held_since": "2020",
+        "revision_history": []
+      }
+    ]
+  }
+]

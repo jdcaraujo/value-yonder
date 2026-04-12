@@ -1,0 +1,20 @@
+{
+  "name": "Admin Copilot",
+  "screenshot": "",
+  "org": "Zendesk",
+  "status": "active",
+  "stage": "In development",
+  "description": "AI assistant for Zendesk admins. Helps support teams configure and manage their operations through natural language.",
+  "last_updated": "2026-04-08",
+  "metrics": [
+    {
+      "label": "Role",
+      "value": "Principal PM"
+    },
+    {
+      "label": "Since",
+      "value": "Mar 2025"
+    }
+  ],
+  "latest": "Expanding scope: moving from answering configuration questions to executing configuration changes. The gap between knowing and doing is where the real product work lives."
+}

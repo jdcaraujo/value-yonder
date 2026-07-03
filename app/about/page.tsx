@@ -45,7 +45,7 @@ export default function AboutPage() {
     <div className="px-6 pt-28 pb-24 max-w-3xl mx-auto">
       {/* Intro */}
       <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-widest mb-6" style={{ color: "#06b6d4" }}>
+        <p className="text-sm font-semibold uppercase tracking-widest mb-6" style={{ color: "var(--color-cyan)" }}>
           About
         </p>
         <p className="text-lg md:text-xl text-neutral-300 leading-relaxed mb-4">
@@ -63,7 +63,7 @@ export default function AboutPage() {
       </FadeIn>
 
       {/* Divider */}
-      <div className="mb-12 h-px" style={{ background: "#1e1f28" }} />
+      <div className="mb-12 h-px" style={{ background: "var(--color-border)" }} />
 
       {/* Career timeline */}
       <FadeIn>
@@ -72,7 +72,7 @@ export default function AboutPage() {
 
       <div className="relative">
         {/* Vertical line */}
-        <div className="absolute left-[72px] top-0 bottom-0 w-px" style={{ background: "#1e1f28" }} />
+        <div className="absolute left-[72px] top-0 bottom-0 w-px" style={{ background: "var(--color-border)" }} />
 
         <div className="space-y-10">
           {timeline.map((item, i) => (
@@ -80,17 +80,17 @@ export default function AboutPage() {
               <div className="flex gap-6">
                 {/* Year */}
                 <div className="w-16 shrink-0 pt-1 text-right">
-                  <span className="text-xs font-semibold text-neutral-600">{item.year}</span>
+                  <span className="text-xs font-semibold text-neutral-500">{item.year}</span>
                 </div>
 
                 {/* Dot */}
                 <div className="relative flex items-start pt-1.5">
-                  <div className="w-2 h-2 rounded-full shrink-0 z-10" style={{ background: "#06b6d4", boxShadow: "0 0 8px rgba(6,182,212,0.5)" }} />
+                  <div className="w-2 h-2 rounded-full shrink-0 z-10" style={{ background: "var(--color-cyan)", boxShadow: "0 0 8px rgba(6,182,212,0.5)" }} />
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 pb-2">
-                  <span className="inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-2" style={{ background: "#1e1f28", color: "#06b6d4" }}>
+                  <span className="inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-2" style={{ background: "var(--color-border)", color: "var(--color-cyan)" }}>
                     {item.role}
                   </span>
                   <h3 className="text-base font-semibold text-white mb-2">{item.company}</h3>
@@ -107,7 +107,7 @@ export default function AboutPage() {
         <div className="mt-16 p-6 rounded-2xl" style={{ background: "rgba(6,182,212,0.04)", border: "1px solid rgba(6,182,212,0.12)" }}>
           <p className="text-neutral-400 text-sm leading-relaxed mb-4">
             If you&apos;re working on the org design questions that come with AI — or just want to compare notes —{" "}
-            <a href="mailto:jdc.araujo@gmail.com" className="underline underline-offset-2 hover:text-cyan-400 transition-colors" style={{ color: "#06b6d4" }}>
+            <a href="mailto:jdc.araujo@gmail.com" className="underline underline-offset-2 hover:text-cyan-400 transition-colors" style={{ color: "var(--color-cyan)" }}>
               get in touch
             </a>.
           </p>
@@ -117,7 +117,7 @@ export default function AboutPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:text-cyan-300"
-              style={{ color: "#06b6d4" }}
+              style={{ color: "var(--color-cyan)" }}
             >
               LinkedIn →
             </a>
@@ -126,7 +126,7 @@ export default function AboutPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:text-cyan-300"
-              style={{ color: "#06b6d4" }}
+              style={{ color: "var(--color-cyan)" }}
             >
               X / Twitter →
             </a>

@@ -131,7 +131,7 @@ export default async function GalleryPage({ params }: Props) {
           ← Seeing
         </Link>
         <FadeIn>
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: "#1e1f28", color: "#06b6d4" }}>
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: "var(--color-border)", color: "var(--color-cyan)" }}>
             {new Date(data.date).getFullYear()}
           </span>
           <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-3">{data.title}</h1>

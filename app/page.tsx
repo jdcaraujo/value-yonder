@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Hero } from "@/components/hero";
 import { EssayCard } from "@/components/essay-card";
 import { FadeIn } from "@/components/fade-in";
@@ -21,10 +22,10 @@ export default function HomePage() {
       <section className="px-6 pb-24 max-w-5xl mx-auto">
         <FadeIn>
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#06b6d4" }}>
+            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--color-cyan)" }}>
               Recent Writing
             </span>
-            <div className="flex-1 h-px" style={{ background: "#1e1f28" }} />
+            <div className="flex-1 h-px" style={{ background: "var(--color-border)" }} />
           </div>
         </FadeIn>
 
@@ -37,17 +38,17 @@ export default function HomePage() {
         </div>
 
         <FadeIn delay={0.4} className="mt-8 text-center">
-          <a
+          <Link
             href="/essays"
             className="inline-block px-6 py-3 rounded-full text-sm font-medium transition-all duration-200"
             style={{
               background: "rgba(6,182,212,0.08)",
               border: "1px solid rgba(6,182,212,0.2)",
-              color: "#06b6d4",
+              color: "var(--color-cyan)",
             }}
           >
             All essays →
-          </a>
+          </Link>
         </FadeIn>
       </section>
     </>

@@ -16,7 +16,7 @@ export default function EssaysPage() {
   return (
     <div className="px-6 pt-28 pb-24 max-w-6xl mx-auto">
       <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "#06b6d4" }}>
+        <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--color-cyan)" }}>
           Essays
         </p>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
@@ -38,7 +38,7 @@ export default function EssaysPage() {
                 {/* Section header */}
                 <div className="flex items-center justify-between mb-5">
                   <h2 className="text-base font-semibold text-white">{label}</h2>
-                  <span className="text-xs text-neutral-600">{essays.length} essays</span>
+                  <span className="text-xs text-neutral-500">{essays.length} essays</span>
                 </div>
 
                 {/* Preview cards */}
@@ -55,7 +55,7 @@ export default function EssaysPage() {
                   <Link
                     href={`/essays/${section}`}
                     className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-cyan-400"
-                    style={{ color: "#06b6d4" }}
+                    style={{ color: "var(--color-cyan)" }}
                   >
                     See all {essays.length} essays →
                   </Link>

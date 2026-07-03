@@ -1,4 +1,4 @@
-import { getEssays, getThoughts, ESSAY_SECTIONS, stripAndExcerpt } from "@/lib/content";
+import { getEssays, getThoughts, ESSAY_SECTIONS } from "@/lib/content";
 import { SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-static";

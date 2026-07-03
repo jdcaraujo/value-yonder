@@ -31,6 +31,8 @@ export function SpaceBackground() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     let animationId: number;
     let stars: Star[] = [];
     let meteors: Meteor[] = [];
@@ -41,6 +43,7 @@ export function SpaceBackground() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initStars();
+      if (reduceMotion) draw(0);
     }
 
     function initStars() {
@@ -101,7 +104,7 @@ export function SpaceBackground() {
       // Stars
       for (const star of stars) {
         const twinkle = Math.sin(t * star.twinkleSpeed + star.twinkleOffset);
-        const opacity = star.opacity * (0.7 + 0.3 * twinkle);
+        const opacity = reduceMotion ? star.opacity : star.opacity * (0.7 + 0.3 * twinkle);
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255,255,255,${opacity})`;
@@ -109,7 +112,7 @@ export function SpaceBackground() {
       }
 
       // Spawn meteors on a schedule with randomness
-      if (t > nextMeteorAt) {
+      if (!reduceMotion && t > nextMeteorAt) {
         spawnMeteor();
         nextMeteorAt = t + 1200 + Math.random() * 1800; // every ~20–50s at 60fps
       }
@@ -151,12 +154,12 @@ export function SpaceBackground() {
         m.life++;
       }
 
-      animationId = requestAnimationFrame(draw);
+      if (!reduceMotion) animationId = requestAnimationFrame(draw);
     }
 
     resize();
     window.addEventListener("resize", resize);
-    animationId = requestAnimationFrame(draw);
+    if (!reduceMotion) animationId = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(animationId);

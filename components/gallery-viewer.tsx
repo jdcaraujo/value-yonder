@@ -31,7 +31,7 @@ function Photo({
   return (
     <figure
       className="rounded-2xl overflow-hidden cursor-zoom-in"
-      style={{ background: "#111218" }}
+      style={{ background: "var(--color-card)" }}
       onClick={onClick}
     >
       <picture>
@@ -59,14 +59,16 @@ function PhotoBlock({
 }: {
   segment: PhotoSegment;
   images: ImageData[];
-  onOpen: (img: ImageData) => void;
+  onOpen: (index: number) => void;
 }) {
-  const imgs = segment.indices.map((i) => images[i]).filter(Boolean);
+  const entries = segment.indices
+    .map((idx) => ({ idx, img: images[idx] }))
+    .filter((e) => Boolean(e.img));
 
   if (segment.layout === "single") {
     return (
       <div className="max-w-3xl mx-auto">
-        <Photo img={imgs[0]} onClick={() => onOpen(imgs[0])} />
+        <Photo img={entries[0].img} onClick={() => onOpen(entries[0].idx)} />
       </div>
     );
   }
@@ -76,25 +78,37 @@ function PhotoBlock({
 
   return (
     <div className={`grid ${cols} gap-3`}>
-      {imgs.map((img, i) => (
-        <Photo key={i} img={img} onClick={() => onOpen(img)} />
+      {entries.map(({ idx, img }) => (
+        <Photo key={idx} img={img} onClick={() => onOpen(idx)} />
       ))}
     </div>
   );
 }
 
 export function GalleryViewer({ segments, images }: Props) {
-  const [lightbox, setLightbox] = useState<ImageData | null>(null);
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const lightbox = lightboxIdx !== null ? images[lightboxIdx] : null;
 
-  const close = useCallback(() => setLightbox(null), []);
+  const close = useCallback(() => setLightboxIdx(null), []);
+  const step = useCallback(
+    (delta: number) =>
+      setLightboxIdx((idx) =>
+        idx === null ? idx : (idx + delta + images.length) % images.length
+      ),
+    [images.length]
+  );
 
-  // Close on Escape
+  // Keyboard: Escape closes, arrows navigate
   useEffect(() => {
-    if (!lightbox) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    if (lightboxIdx === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
+    };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [lightbox, close]);
+  }, [lightboxIdx, close, step]);
 
   // Prevent body scroll when open
   useEffect(() => {
@@ -116,7 +130,7 @@ export function GalleryViewer({ segments, images }: Props) {
                 ))}
               </div>
             ) : (
-              <PhotoBlock segment={seg} images={images} onOpen={setLightbox} />
+              <PhotoBlock segment={seg} images={images} onOpen={setLightboxIdx} />
             )}
           </FadeIn>
         ))}
@@ -126,6 +140,8 @@ export function GalleryViewer({ segments, images }: Props) {
       <AnimatePresence>
         {lightbox && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
             className="fixed inset-0 z-[100] flex items-center justify-center cursor-zoom-out"
             style={{ background: "rgba(5, 6, 12, 0.96)" }}
             initial={{ opacity: 0 }}
@@ -158,6 +174,22 @@ export function GalleryViewer({ segments, images }: Props) {
                 </p>
               )}
             </motion.div>
+
+            {/* Prev / next */}
+            <button
+              className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 p-3 text-2xl text-neutral-500 hover:text-white transition-colors cursor-pointer"
+              onClick={(e) => { e.stopPropagation(); step(-1); }}
+              aria-label="Previous photo"
+            >
+              ‹
+            </button>
+            <button
+              className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 p-3 text-2xl text-neutral-500 hover:text-white transition-colors cursor-pointer"
+              onClick={(e) => { e.stopPropagation(); step(1); }}
+              aria-label="Next photo"
+            >
+              ›
+            </button>
 
             {/* Close hint */}
             <button

@@ -16,11 +16,11 @@ export function EssayCard({ essay }: EssayCardProps) {
 
   return (
     <Link href={href} className="group block h-full">
-      <article className="essay-card h-full p-6 rounded-3xl border border-transparent transition-all duration-200 hover:border-neutral-800 hover:scale-[1.015]" style={{ background: "#111218" }}>
+      <article className="essay-card h-full p-6 rounded-3xl border border-transparent transition-all duration-200 hover:border-neutral-800 hover:scale-[1.015]" style={{ background: "var(--color-card)" }}>
         {/* Category badge */}
         <span
           className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4"
-          style={{ background: "#1e1f28", color: "#06b6d4" }}
+          style={{ background: "var(--color-border)", color: "var(--color-cyan)" }}
         >
           {sectionLabels[essay.section] || essay.section}
         </span>
@@ -32,7 +32,7 @@ export function EssayCard({ essay }: EssayCardProps) {
 
         {/* Description */}
         {essay.description && (
-          <p className="text-sm text-neutral-500 leading-relaxed mb-4 line-clamp-2">
+          <p className="text-sm text-neutral-400 leading-relaxed mb-4 line-clamp-2">
             {essay.description}
           </p>
         )}
@@ -40,14 +40,14 @@ export function EssayCard({ essay }: EssayCardProps) {
         {/* Meta */}
         <div className="flex items-center gap-3 pt-3">
           {essay.date && (
-            <span className="text-xs text-neutral-600">
+            <span className="text-xs text-neutral-500">
               {new Date(essay.date).toLocaleDateString("en-GB", {
                 year: "numeric",
                 month: "short",
               })}
             </span>
           )}
-          <span className="text-xs text-neutral-600">{essay.readingTime} min read</span>
+          <span className="text-xs text-neutral-500">{essay.readingTime} min read</span>
         </div>
       </article>
     </Link>

@@ -1,30 +1,32 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
 export function Hero() {
+  const reduceMotion = useReducedMotion();
+  const rise = (y: number) => (reduceMotion ? 0 : y);
   return (
     <section className="pt-36 pb-20 px-6 max-w-5xl mx-auto">
       {/* Eyebrow */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: rise(10) }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
         className="flex items-center gap-2 mb-6"
       >
         <span
           className="w-1.5 h-1.5 rounded-full animate-pulse"
-          style={{ background: "#06b6d4" }}
+          style={{ background: "var(--color-cyan)" }}
         />
-        <span className="text-sm font-medium" style={{ color: "#06b6d4" }}>
+        <span className="text-sm font-medium" style={{ color: "var(--color-cyan)" }}>
           AI product leader · Lisbon
         </span>
       </motion.div>
 
       {/* Name */}
       <motion.h1
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: rise(20) }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6"
@@ -40,7 +42,7 @@ export function Hero() {
 
       {/* Subtitle */}
       <motion.p
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: rise(20) }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
         className="text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed mb-10"
@@ -50,7 +52,7 @@ export function Hero() {
 
       {/* Callout */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: rise(20) }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
         className="p-6 rounded-2xl max-w-2xl"
@@ -66,7 +68,7 @@ export function Hero() {
           <Link
             href="mailto:jdc.araujo@gmail.com"
             className="underline underline-offset-2 hover:text-cyan-400 transition-colors"
-            style={{ color: "#06b6d4" }}
+            style={{ color: "var(--color-cyan)" }}
           >
             let&apos;s talk
           </Link>

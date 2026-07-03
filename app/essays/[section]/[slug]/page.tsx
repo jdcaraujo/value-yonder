@@ -76,7 +76,7 @@ export default async function EssayPage({ params }: Props) {
       <header className="mb-10">
         <span
           className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4"
-          style={{ background: "#1e1f28", color: "#06b6d4" }}
+          style={{ background: "var(--color-border)", color: "var(--color-cyan)" }}
         >
           {sectionLabel}
         </span>
@@ -98,7 +98,7 @@ export default async function EssayPage({ params }: Props) {
       </header>
 
       {/* Divider */}
-      <div className="mb-10 h-px" style={{ background: "#1e1f28" }} />
+      <div className="mb-10 h-px" style={{ background: "var(--color-border)" }} />
 
       {/* Content */}
       <div

@@ -15,7 +15,7 @@ export default function ThoughtsPage() {
   return (
     <div className="px-6 pt-28 pb-24 max-w-5xl mx-auto">
       <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "#06b6d4" }}>
+        <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--color-cyan)" }}>
           Thoughts
         </p>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
@@ -32,12 +32,12 @@ export default function ThoughtsPage() {
             <Link href={`/thoughts/${thought.slug}`} className="group block">
               <article
                 className="p-6 rounded-2xl border border-transparent hover:border-neutral-800 transition-all duration-200"
-                style={{ background: "#111218" }}
+                style={{ background: "var(--color-card)" }}
               >
                 <h2 className="text-base font-semibold text-white group-hover:text-cyan-400 transition-colors mb-2">
                   {thought.title}
                 </h2>
-                <div className="flex items-center gap-3 text-xs text-neutral-600">
+                <div className="flex items-center gap-3 text-xs text-neutral-500">
                   {thought.date && (
                     <time dateTime={thought.date}>
                       {new Date(thought.date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}

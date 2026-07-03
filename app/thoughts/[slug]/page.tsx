@@ -66,7 +66,7 @@ export default async function ThoughtPage({ params }: Props) {
 
       <article>
       <header className="mb-10">
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: "#1e1f28", color: "#06b6d4" }}>
+        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: "var(--color-border)", color: "var(--color-cyan)" }}>
           Thought
         </span>
         <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">{thought.title}</h1>
@@ -80,7 +80,7 @@ export default async function ThoughtPage({ params }: Props) {
         </div>
       </header>
 
-      <div className="mb-10 h-px" style={{ background: "#1e1f28" }} />
+      <div className="mb-10 h-px" style={{ background: "var(--color-border)" }} />
       <div className="prose" dangerouslySetInnerHTML={{ __html: thought.contentHtml }} />
       </article>
     </div>

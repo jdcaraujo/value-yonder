@@ -79,8 +79,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main>{children}</main>
         <footer
-          className="mt-24 py-10 text-center text-xs text-neutral-600"
-          style={{ borderTop: "1px solid #1e1f28" }}
+          className="mt-24 py-10 text-center text-xs text-neutral-500"
+          style={{ borderTop: "1px solid var(--color-border)" }}
         >
           <div className="flex items-center justify-center gap-5 mb-3">
             <a

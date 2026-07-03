@@ -15,7 +15,7 @@ export default function SeeingPage() {
   return (
     <div className="px-6 pt-28 pb-24 max-w-5xl mx-auto">
       <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "#06b6d4" }}>
+        <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--color-cyan)" }}>
           Seeing
         </p>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
@@ -30,7 +30,7 @@ export default function SeeingPage() {
         {galleries.map((gallery, i) => (
           <FadeIn key={gallery.slug} delay={i * 0.1}>
             <Link href={`/seeing/${gallery.slug}`} className="group block">
-              <article className="rounded-3xl overflow-hidden border border-transparent hover:border-neutral-800 transition-all duration-300" style={{ background: "#111218" }}>
+              <article className="rounded-3xl overflow-hidden border border-transparent hover:border-neutral-800 transition-all duration-300" style={{ background: "var(--color-card)" }}>
                 {/* Cover image */}
                 <div className="relative overflow-hidden aspect-[16/9]">
                   <img

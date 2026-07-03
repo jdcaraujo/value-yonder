@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getEssay, getAllEssaySlugs, EssaySection, ESSAY_SECTIONS, stripAndExcerpt } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 import { RelatedEssays } from "@/components/related-essays";
 
 interface Props {
@@ -16,19 +17,14 @@ export async function generateMetadata({ params }: Props) {
   const essay = await getEssay(section as EssaySection, slug);
   if (!essay) return {};
   const description = essay.description || stripAndExcerpt(essay.contentHtml);
-  const url = `https://valueyonder.com/essays/${section}/${slug}`;
-  return {
+  return buildMetadata({
     title: `${essay.title} — Value Yonder`,
+    ogTitle: essay.title,
     description,
-    openGraph: {
-      type: "article",
-      url,
-      title: essay.title,
-      description,
-      publishedTime: essay.date,
-    },
-    twitter: { title: essay.title, description },
-  };
+    path: `/essays/${section}/${slug}`,
+    ogType: "article",
+    publishedTime: essay.date,
+  });
 }
 
 export default async function EssayPage({ params }: Props) {
@@ -75,6 +71,7 @@ export default async function EssayPage({ params }: Props) {
         ← {sectionLabel}
       </Link>
 
+      <article>
       {/* Header */}
       <header className="mb-10">
         <span
@@ -108,6 +105,7 @@ export default async function EssayPage({ params }: Props) {
         className="prose"
         dangerouslySetInnerHTML={{ __html: essay.contentHtml }}
       />
+      </article>
 
       <RelatedEssays current={essay} />
     </div>

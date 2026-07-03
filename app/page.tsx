@@ -1,17 +1,14 @@
-import type { Metadata } from "next";
 import { Hero } from "@/components/hero";
 import { EssayCard } from "@/components/essay-card";
 import { FadeIn } from "@/components/fade-in";
 import { getAllEssays } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Value Yonder — Daniel Araújo",
   description: "AI product leader. Former founder. Writing about what I'm learning.",
-  openGraph: {
-    type: "website",
-    url: "https://valueyonder.com",
-  },
-};
+  path: "/",
+});
 
 export default function HomePage() {
   const recentEssays = getAllEssays().slice(0, 6);

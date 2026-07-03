@@ -22,13 +22,17 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://valueyonder.com"),
   title: "Value Yonder — Daniel Araújo",
   description: "AI product leader. Former founder. Writing about what I'm learning.",
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon.svg", apple: "/apple-touch-icon.png" },
+  alternates: {
+    types: { "application/rss+xml": "/index.xml" },
+  },
   openGraph: {
     type: "website",
     siteName: "Value Yonder",
     title: "Value Yonder — Daniel Araújo",
     description: "AI product leader. Former founder. Writing about what I'm learning.",
     locale: "en_PT",
+    images: ["/og.png"],
   },
   twitter: {
     card: "summary_large_image",

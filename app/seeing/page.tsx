@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { getGalleries } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Seeing — Value Yonder",
   description: "Photography from around the world.",
-};
+  path: "/seeing",
+});
 
 export default function SeeingPage() {
   const galleries = getGalleries();

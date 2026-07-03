@@ -3,6 +3,7 @@ import Link from "next/link";
 import { EssayCard } from "@/components/essay-card";
 import { FadeIn } from "@/components/fade-in";
 import { getEssays, ESSAY_SECTIONS, EssaySection } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ section: string }>;
@@ -16,10 +17,11 @@ export async function generateMetadata({ params }: Props) {
   const { section } = await params;
   const label = ESSAY_SECTIONS.find((s) => s.slug === section)?.label;
   if (!label) return {};
-  return {
+  return buildMetadata({
     title: `${label} — Value Yonder`,
     description: `All essays on ${label.toLowerCase()}.`,
-  };
+    path: `/essays/${section}`,
+  });
 }
 
 const sectionDescriptions: Record<string, string> = {

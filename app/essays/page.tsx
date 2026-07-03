@@ -2,11 +2,13 @@ import Link from "next/link";
 import { EssayCard } from "@/components/essay-card";
 import { FadeIn } from "@/components/fade-in";
 import { getEssays, ESSAY_SECTIONS } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Essays — Value Yonder",
   description: "Notes organised around a question — on learning, on progress, and on prosperity.",
-};
+  path: "/essays",
+});
 
 export default function EssaysPage() {
   const grouped = getEssays();

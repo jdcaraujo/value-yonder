@@ -1,10 +1,12 @@
 import { FadeIn } from "@/components/fade-in";
 import { getBooks } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Reading — Value Yonder",
   description: "Books read, with notes.",
-};
+  path: "/reading",
+});
 
 function Stars({ rating }: { rating: number }) {
   return (

@@ -1,9 +1,11 @@
 import { FadeIn } from "@/components/fade-in";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "About — Value Yonder",
   description: "Principal PM specialising in AI, based in Lisbon.",
-};
+  path: "/about",
+});
 
 const timeline = [
   {

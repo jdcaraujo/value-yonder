@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getGallery, getAllGallerySlugs, GalleryWithContent } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 import { FadeIn } from "@/components/fade-in";
 import { GalleryViewer } from "@/components/gallery-viewer";
 
@@ -17,19 +18,13 @@ export async function generateMetadata({ params }: Props) {
   const { gallery } = await params;
   const data = await getGallery(gallery);
   if (!data) return {};
-  const url = `https://valueyonder.com/seeing/${gallery}`;
-  return {
+  return buildMetadata({
     title: `${data.title} — Value Yonder`,
+    ogTitle: data.title,
     description: data.description,
-    openGraph: {
-      type: "website",
-      url,
-      title: data.title,
-      description: data.description,
-      images: [{ url: data.coverImage }],
-    },
-    twitter: { title: data.title, description: data.description, images: [data.coverImage] },
-  };
+    path: `/seeing/${gallery}`,
+    images: [data.coverImage],
+  });
 }
 
 // ─── Segment types ────────────────────────────────────────────────────────────

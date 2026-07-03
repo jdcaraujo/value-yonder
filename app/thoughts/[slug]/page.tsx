@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getThought, getThoughts, stripAndExcerpt } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -15,13 +16,14 @@ export async function generateMetadata({ params }: Props) {
   const thought = await getThought(slug);
   if (!thought) return {};
   const description = stripAndExcerpt(thought.contentHtml);
-  const url = `https://valueyonder.com/thoughts/${slug}`;
-  return {
+  return buildMetadata({
     title: `${thought.title} — Value Yonder`,
+    ogTitle: thought.title,
     description,
-    openGraph: { type: "article", url, title: thought.title, description, publishedTime: thought.date },
-    twitter: { title: thought.title, description },
-  };
+    path: `/thoughts/${slug}`,
+    ogType: "article",
+    publishedTime: thought.date,
+  });
 }
 
 export default async function ThoughtPage({ params }: Props) {
@@ -62,6 +64,7 @@ export default async function ThoughtPage({ params }: Props) {
         ← Thoughts
       </Link>
 
+      <article>
       <header className="mb-10">
         <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: "#1e1f28", color: "#06b6d4" }}>
           Thought
@@ -79,6 +82,7 @@ export default async function ThoughtPage({ params }: Props) {
 
       <div className="mb-10 h-px" style={{ background: "#1e1f28" }} />
       <div className="prose" dangerouslySetInnerHTML={{ __html: thought.contentHtml }} />
+      </article>
     </div>
   );
 }

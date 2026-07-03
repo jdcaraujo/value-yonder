@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllEssays, getThoughts, getAllGallerySlugs } from "@/lib/content";
+import { getAllEssays, getThoughts, getAllGallerySlugs, ESSAY_SECTIONS } from "@/lib/content";
 
 export const dynamic = "force-static";
 
@@ -15,6 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/reading`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
+
+  const sectionRoutes: MetadataRoute.Sitemap = ESSAY_SECTIONS.map(({ slug }) => ({
+    url: `${base}/essays/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
 
   const essayRoutes: MetadataRoute.Sitemap = getAllEssays().map((essay) => ({
     url: `${base}/essays/${essay.section}/${essay.slug}`,
@@ -37,5 +44,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...essayRoutes, ...thoughtRoutes, ...galleryRoutes];
+  return [...staticRoutes, ...sectionRoutes, ...essayRoutes, ...thoughtRoutes, ...galleryRoutes];
 }

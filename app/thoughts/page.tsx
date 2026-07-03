@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/fade-in";
 import { getThoughts } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Thoughts — Value Yonder",
   description: "Random thoughts, clustered by themes instead of dates.",
-};
+  path: "/thoughts",
+});
 
 export default function ThoughtsPage() {
   const thoughts = getThoughts();

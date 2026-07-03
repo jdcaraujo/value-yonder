@@ -49,13 +49,13 @@ export default function AboutPage() {
         <p className="text-lg md:text-xl text-neutral-300 leading-relaxed mb-4">
           I&apos;m a principal product manager specialising in AI, based in Lisbon, Portugal.
         </p>
-        <p className="text-neutral-400 leading-relaxed mb-4">
+        <p className="text-neutral-400 leading-relaxed mb-4 text-[1.35rem]">
           Currently at <span className="text-white font-medium">Zendesk</span>, where I lead the Admin Copilot — an AI-powered product that helps support teams configure and manage their operations. It sits at the intersection of LLMs, enterprise workflow, and the messiness of real support organisations.
         </p>
-        <p className="text-neutral-400 leading-relaxed mb-4">
+        <p className="text-neutral-400 leading-relaxed mb-4 text-[1.35rem]">
           No ML degree. Product-first, not engineering-first. I care about what AI actually does for people, not what it theoretically could.
         </p>
-        <p className="text-neutral-400 leading-relaxed mb-16">
+        <p className="text-neutral-400 leading-relaxed mb-16 text-[1.35rem]">
           This site is where I think out loud — about strategy, product, org design, and occasionally what I&apos;ve learned the hard way.
         </p>
       </FadeIn>

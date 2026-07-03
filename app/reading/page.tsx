@@ -65,11 +65,11 @@ export default function ReadingPage() {
                   </div>
                   {/* Tooltip on hover */}
                   <div
-                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-44 p-3 rounded-xl text-xs z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-3 rounded-xl z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150"
                     style={{ background: "#1a1b24", border: "1px solid #2a2b35" }}
                   >
-                    <p className="font-semibold text-white mb-0.5 line-clamp-2">{book.title}</p>
-                    <p className="text-neutral-500 mb-1.5">{book.author}</p>
+                    <p className="font-semibold text-white mb-0.5 line-clamp-2 text-sm">{book.title}</p>
+                    <p className="text-neutral-500 mb-1.5 text-xs">{book.author}</p>
                     {book.rating > 0 && <Stars rating={book.rating} />}
                   </div>
                 </div>

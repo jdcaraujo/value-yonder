@@ -3,6 +3,7 @@ import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { SpaceBackground } from "@/components/space-background";
+import { Analytics } from "@/components/analytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -97,6 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
           © Daniel Araújo · Lisbon
         </footer>
+        <Analytics />
       </body>
     </html>
   );

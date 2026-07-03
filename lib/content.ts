@@ -152,6 +152,12 @@ export async function getEssay(section: EssaySection, slug: string): Promise<Ess
   };
 }
 
+export function getEssayMarkdown(section: EssaySection, slug: string): string | null {
+  const filePath = path.join(ESSAYS_DIR, section, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
+  return parseFrontmatter(fs.readFileSync(filePath, "utf-8")).content.trim();
+}
+
 export function getAllEssaySlugs(): Array<{ section: EssaySection; slug: string }> {
   const slugs: Array<{ section: EssaySection; slug: string }> = [];
   for (const { slug: section } of ESSAY_SECTIONS) {
@@ -210,6 +216,12 @@ export async function getThought(slug: string): Promise<ThoughtWithContent | nul
     readingTime: estimateReadingTime(content),
     contentHtml: await markdownToHtml(content),
   };
+}
+
+export function getThoughtMarkdown(slug: string): string | null {
+  const filePath = path.join(THOUGHTS_DIR, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
+  return parseFrontmatter(fs.readFileSync(filePath, "utf-8")).content.trim();
 }
 
 // ─── Seeing / Galleries ───────────────────────────────────────────────────────

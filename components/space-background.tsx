@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "@/lib/theme";
 
 interface Star {
   x: number;
@@ -24,12 +25,19 @@ interface Meteor {
 
 export function SpaceBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // Light mode has a plain background — no stars, no shooting stars.
+    if (theme === "light") {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -165,7 +173,7 @@ export function SpaceBackground() {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas

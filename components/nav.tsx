@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
   { label: "Essays", href: "/essays" },
@@ -27,11 +28,11 @@ export function Nav() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? "rgba(9, 10, 18, 0.88)" : "transparent",
+        background: scrolled ? "var(--nav-bg)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
-        boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,0.4)" : "none",
+        borderBottom: scrolled ? "1px solid var(--nav-border)" : "1px solid transparent",
+        boxShadow: scrolled ? "var(--nav-shadow)" : "none",
       }}
     >
       <div
@@ -40,7 +41,7 @@ export function Nav() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center opacity-90 hover:opacity-100 transition-opacity">
-          <img src="/logo.svg" alt="Value Yonder" style={{ height: scrolled ? "24px" : "30px", transition: "height 0.3s ease" }} />
+          <img src="/logo.svg" alt="Value Yonder" style={{ height: scrolled ? "24px" : "30px", transition: "height 0.3s ease", filter: "var(--logo-filter)" }} />
         </Link>
 
         {/* Desktop nav */}
@@ -53,19 +54,22 @@ export function Nav() {
                 href={link.href}
                 className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
                   active
-                    ? "text-white bg-white/10"
-                    : "text-neutral-400 hover:text-white hover:bg-white/5"
+                    ? "text-white bg-[var(--surface-active)]"
+                    : "text-neutral-400 hover:text-white hover:bg-[var(--surface-hover)]"
                 }`}
               >
                 {link.label}
               </Link>
             );
           })}
+          <ThemeToggle className="ml-1" />
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* Mobile controls */}
+        <div className="md:hidden flex items-center gap-1">
+        <ThemeToggle />
         <button
-          className="md:hidden p-2 text-neutral-400 hover:text-white transition-colors"
+          className="p-2 text-neutral-400 hover:text-white transition-colors"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -75,13 +79,14 @@ export function Nav() {
             <span className={`block h-px bg-current transition-all duration-200 ${open ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </div>
         </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {open && (
         <div
           className="md:hidden px-6 pb-4 flex flex-col gap-1"
-          style={{ background: "rgba(9,10,18,0.97)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+          style={{ background: "var(--nav-menu-bg)", borderBottom: "1px solid var(--nav-border)" }}
         >
           {links.map((link) => {
             const active = pathname === link.href || pathname?.startsWith(link.href + "/");
@@ -92,8 +97,8 @@ export function Nav() {
                 onClick={() => setOpen(false)}
                 className={`px-3 py-2 text-sm rounded-lg transition-colors ${
                   active
-                    ? "text-white bg-white/10"
-                    : "text-neutral-400 hover:text-white hover:bg-white/5"
+                    ? "text-white bg-[var(--surface-active)]"
+                    : "text-neutral-400 hover:text-white hover:bg-[var(--surface-hover)]"
                 }`}
               >
                 {link.label}

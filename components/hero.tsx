@@ -31,7 +31,7 @@ export function Hero() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6"
         style={{
-          background: "linear-gradient(160deg, #ffffff 40%, #737373 100%)",
+          background: "linear-gradient(160deg, var(--name-from) 40%, var(--name-to) 100%)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",

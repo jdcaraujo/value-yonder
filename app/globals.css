@@ -40,6 +40,16 @@
 
   --prose-body: #d4d4d4;
   --prose-code: #67e8f9;
+
+  /* Bookshelf */
+  --shelf-back:       #14151d;
+  --shelf-back-2:     #0e0f16;
+  --wood:             #6b4a2f;
+  --wood-hi:          #8a6238;
+  --wood-lo:          #43301f;
+  --wood-edge:        #2c2013;
+  --shelf-cast:       rgba(0, 0, 0, 0.55);
+  --spine-text:       #f3ead7;
 }
 
 /*
@@ -88,6 +98,16 @@
 
   --prose-body: #3f3f46;
   --prose-code: #0e7490;
+
+  /* Bookshelf — lighter oak on a warm wall */
+  --shelf-back:   #efe9df;
+  --shelf-back-2: #e4ddcf;
+  --wood:         #b98a54;
+  --wood-hi:      #d8ad74;
+  --wood-lo:      #8c6438;
+  --wood-edge:    #6f4e2b;
+  --shelf-cast:   rgba(84, 60, 34, 0.28);
+  --spine-text:   #f6efe0;
 }
 
 /* White cards need a touch of lift on the near-white light background. */
@@ -173,3 +193,184 @@ body {
   margin-bottom: 1.25rem;
 }
 .prose pre code { background: transparent; padding: 0; }
+
+/* ─── Bookshelf ─────────────────────────────────────────────────────────── */
+
+/* One year = one shelf. Real 3D books stand angled on a wooden ledge; hover
+   pulls a book forward, straightens it to face you, and lifts it off the shelf. */
+.shelf-scene { position: relative; }
+
+.shelf-track {
+  display: flex;
+  align-items: flex-end;
+  gap: 22px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 84px 44px 14px;
+  perspective: 1700px;
+  perspective-origin: 50% 42%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--wood-lo) transparent;
+  background: linear-gradient(180deg, var(--shelf-back-2) 0%, var(--shelf-back) 62%);
+  border-radius: 10px 10px 0 0;
+  box-shadow: inset 0 20px 34px -22px var(--shelf-cast);
+}
+.shelf-track::-webkit-scrollbar { height: 8px; }
+.shelf-track::-webkit-scrollbar-thumb { background: var(--wood-lo); border-radius: 4px; }
+
+/* The wooden ledge the books rest on. */
+.shelf-ledge {
+  height: 22px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(180deg, var(--wood-hi) 0%, var(--wood) 42%, var(--wood-lo) 100%);
+  box-shadow:
+    0 1px 0 var(--wood-hi) inset,
+    0 -1px 0 var(--wood-edge) inset,
+    0 18px 26px -14px var(--shelf-cast);
+  position: relative;
+  z-index: 2;
+}
+.shelf-ledge::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0; height: 3px;
+  background: linear-gradient(180deg, transparent, var(--wood-edge));
+  border-radius: 0 0 10px 10px;
+}
+
+/* ── A single 3D book ──────────────────────────────────────────────────── */
+.book {
+  --w: 122px;
+  --h: 184px;
+  --d: 26px;
+  --c1: #3f6b7d;
+  --c2: #2b4d5c;
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--w);
+  height: var(--h);
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform-origin: bottom center;
+  transform: rotateY(-27deg) rotateX(-5deg);
+  transition: transform 0.55s cubic-bezier(0.2, 0.72, 0.15, 1);
+  will-change: transform;
+}
+.book:hover,
+.book:focus-visible {
+  transform: rotateY(0deg) rotateX(0deg) translateZ(70px) scale(1.04);
+  z-index: 8;
+  outline: none;
+}
+
+.book__face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+/* Front cover — the readable face. */
+.book__front {
+  width: var(--w);
+  height: var(--h);
+  transform: translate(-50%, -50%) translateZ(calc(var(--d) / 2));
+  border-radius: 2px 5px 5px 2px;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--c1), var(--c2));
+  box-shadow:
+    0 14px 26px -10px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 22px 0 30px -22px rgba(0, 0, 0, 0.5); /* binding shadow near spine */
+}
+.book__front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Procedural clothbound front for books with no cover image. */
+.book__proc {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 12px;
+  text-align: center;
+  color: var(--spine-text);
+  font-family: var(--font-newsreader), Georgia, serif;
+}
+.book__proc-author { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.72; }
+.book__proc-title  { font-size: 15px; line-height: 1.2; font-weight: 600; }
+.book__proc-rule   { width: 26px; height: 1px; margin: 0 auto; background: currentColor; opacity: 0.55; }
+
+/* Caption that fades in over the cover on hover / focus. */
+.book__cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 22px 10px 9px;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.86));
+  color: #fff;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.book:hover .book__cap,
+.book:focus-visible .book__cap { opacity: 1; }
+.book__cap b { display: block; font-size: 11px; font-weight: 600; line-height: 1.25; }
+.book__cap span { display: block; font-size: 10px; opacity: 0.78; margin-top: 1px; }
+.book__cap em { color: #e9c46a; font-style: normal; letter-spacing: 1px; font-size: 10px; }
+
+/* Spine (left face). */
+.book__spine {
+  width: var(--d);
+  height: var(--h);
+  transform: translate(-50%, -50%) rotateY(-90deg) translateZ(calc(var(--w) / 2));
+  background: linear-gradient(180deg, var(--c1), var(--c2));
+  border-radius: 2px 0 0 2px;
+  box-shadow:
+    inset -7px 0 13px rgba(0, 0, 0, 0.4),
+    inset 3px 0 4px rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.book__spine span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 10px;
+  color: var(--spine-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 90%;
+  opacity: 0.9;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Page edges (right + top faces). */
+.book__pages {
+  width: var(--d);
+  height: calc(var(--h) - 8px);
+  transform: translate(-50%, -50%) rotateY(90deg) translateZ(calc(var(--w) / 2));
+  background: repeating-linear-gradient(0deg, #efe7d4 0 1px, #cbbf9f 1px 3px);
+  border-radius: 0 2px 2px 0;
+}
+.book__top {
+  width: var(--w);
+  height: var(--d);
+  transform: translate(-50%, -50%) rotateX(90deg) translateZ(calc(var(--h) / 2));
+  background: repeating-linear-gradient(90deg, #efe7d4 0 1px, #cbbf9f 1px 3px);
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book { transition: none; }
+  .book:hover, .book:focus-visible { transform: rotateY(0deg) translateZ(40px); }
+  .book__cap { transition: none; }
+}

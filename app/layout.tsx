@@ -77,10 +77,14 @@ const jsonLdPerson = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
-      </head>
       <body>
+        <script
+          // Runs synchronously as the first thing in <body>, before any content
+          // paints, so the theme is set with no flash. suppressHydrationWarning
+          // stops React re-rendering this executable inline script on the client.
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: themeInit }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}

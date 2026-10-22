@@ -5,11 +5,15 @@
 Daniel's personal site: essays, thoughts, photo galleries and a reading log. Live at https://valueyonder.com.
 
 - **Stack:** Next.js 16 (App Router, TypeScript, static export) + Tailwind CSS v4 + Framer Motion
-- **Hosting:** static files on the Synology NAS (`/Solar6TB/ValueYonder`), uploaded by `deploy_next.py`.
-  GitHub (`jdcaraujo/value-yonder-next`) is backup only — there is no Actions deploy.
+- **Hosting (Oct 2026):** valueyonder.com (NAS) is offline until Daniel reconfigures his home network.
+  Meanwhile every push to `main` deploys to GitHub Pages at https://jdcaraujo.github.io/value-yonder/
+  (`.github/workflows/pages.yml`, built with `NEXT_PUBLIC_BASE_PATH=/value-yonder`). The repo
+  (`jdcaraujo/value-yonder`) is public for this.
+- **NAS deploy:** static files on the Synology NAS (`/Solar6TB/ValueYonder`), uploaded by `deploy_next.py`
+  (builds without a sub-path). Canonical URLs and structured data always point at valueyonder.com.
 - **Content lives in this repo:** markdown with Hugo-style TOML frontmatter in `content/`
   (`essays/<section>/`, `thoughts/`, `seeing/`), plus `data/books.json`, `data/projects/`, `data/thinking.json`.
-  The old Hugo site (`jdcaraujo/value-yonder`) is retired and archived.
+  The old Hugo site is retired; its full history is a git bundle in `~/Backups/2026-10-reorg/value-yonder-repos/`.
 - `drafts/` holds old Hugo essays that were never carried over. They are not published; ask Daniel before
   moving any of them into `content/`.
 
@@ -61,7 +65,8 @@ The build also writes redirect stubs for legacy essay URLs.
 ## Conventions
 
 - Read a feature's key file before touching it
-- Link hrefs have no basePath prefix (`/essays`, not `/next/essays`); public assets use absolute paths (`/logo.svg`)
+- Link hrefs have no basePath prefix (`/essays`) — Next adds it. Anything else pointing into `public/`
+  (img src, icons, gallery images) must use `withBase()` from `lib/base-path.ts`, or it breaks on Pages
 - Run `npm run dev` and check the change before deploying
 - Frontmatter format:
 

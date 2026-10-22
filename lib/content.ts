@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import * as toml from "toml";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
+import { withBase } from "./base-path";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -240,7 +241,7 @@ function parseGalleryImages(content: string, gallerySlug: string): Array<{ src: 
   const figureRegex = /<figure>[\s\S]*?<img[^>]+src="([^"]+)"[^>]*alt="([^"]*)"[^>]*>[\s\S]*?(?:<figcaption>([\s\S]*?)<\/figcaption>)?[\s\S]*?<\/figure>/g;
   let match;
   while ((match = figureRegex.exec(content)) !== null) {
-    const src = `/seeing/${gallerySlug}/${match[1].replace(/^\.\//, "")}`;
+    const src = withBase(`/seeing/${gallerySlug}/${match[1].replace(/^\.\//, "")}`);
     images.push({
       src,
       thumbSrc: toWebP(src, "thumb"),
@@ -280,7 +281,7 @@ export function getGalleries(): Gallery[] {
         title: (data.title as string) || dir,
         date: data.date ? new Date(data.date as string).toISOString().split("T")[0] : "",
         description: (data.description as string) || "",
-        coverImage: `/seeing/${dir}/thumb/${coverStem}.webp`,
+        coverImage: withBase(`/seeing/${dir}/thumb/${coverStem}.webp`),
         imageCount: imageFiles.length,
       };
     })
@@ -302,7 +303,7 @@ export async function getGallery(slug: string): Promise<GalleryWithContent | nul
   const images = parseGalleryImages(content, slug);
   // If no HTML figures, build from image files
   const finalImages = images.length > 0 ? images : imageFiles.sort().map((f) => {
-    const src = `/seeing/${slug}/${f}`;
+    const src = withBase(`/seeing/${slug}/${f}`);
     return { src, thumbSrc: toWebP(src, "thumb"), fullSrc: toWebP(src, "full"), alt: (data.title as string) || slug, caption: "" };
   });
   return {
@@ -310,7 +311,7 @@ export async function getGallery(slug: string): Promise<GalleryWithContent | nul
     title: (data.title as string) || slug,
     date: data.date ? new Date(data.date as string).toISOString().split("T")[0] : "",
     description: (data.description as string) || "",
-    coverImage: `/seeing/${slug}/thumb/${coverStem}.webp`,
+    coverImage: withBase(`/seeing/${slug}/thumb/${coverStem}.webp`),
     imageCount: imageFiles.length,
     images: finalImages,
     intro: stripHtmlAndShortcodes(content),

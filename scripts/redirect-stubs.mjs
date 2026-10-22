@@ -8,6 +8,8 @@ const ROOT = process.cwd();
 const ESSAYS_DIR = path.join(ROOT, "content", "essays");
 const OUT_DIR = path.join(ROOT, "out");
 const SITE_URL = "https://valueyonder.com";
+// On GitHub Pages the site lives under a sub-path; send visitors there, keep the canonical on valueyonder.com
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 if (!fs.existsSync(OUT_DIR)) {
   console.error("out/ not found — run `next build` first");
@@ -21,7 +23,9 @@ for (const section of fs.readdirSync(ESSAYS_DIR)) {
   for (const file of fs.readdirSync(sectionDir)) {
     if (!file.endsWith(".md") || file === "_index.md") continue;
     const slug = file.replace(/\.md$/, "");
-    const newUrl = `${SITE_URL}/essays/${section}/${slug}/`;
+    const newPath = `/essays/${section}/${slug}/`;
+    const canonicalUrl = `${SITE_URL}${newPath}`;
+    const newUrl = BASE_PATH ? `${BASE_PATH}${newPath}` : canonicalUrl;
     const stubDir = path.join(OUT_DIR, "essays", slug);
     if (fs.existsSync(path.join(stubDir, "index.html"))) continue; // never clobber a real page
     fs.mkdirSync(stubDir, { recursive: true });
@@ -32,7 +36,7 @@ for (const section of fs.readdirSync(ESSAYS_DIR)) {
 <head>
 <meta charset="utf-8">
 <title>Redirecting…</title>
-<link rel="canonical" href="${newUrl}">
+<link rel="canonical" href="${canonicalUrl}">
 <meta http-equiv="refresh" content="0; url=${newUrl}">
 <meta name="robots" content="noindex">
 </head>

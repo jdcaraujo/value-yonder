@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { withBase } from "@/lib/base-path";
 
 const links = [
   { label: "Essays", href: "/essays" },
@@ -41,7 +42,7 @@ export function Nav() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center opacity-90 hover:opacity-100 transition-opacity">
-          <img src="/logo.svg" alt="Value Yonder" style={{ height: scrolled ? "24px" : "30px", transition: "height 0.3s ease", filter: "var(--logo-filter)" }} />
+          <img src={withBase("/logo.svg")} alt="Value Yonder" style={{ height: scrolled ? "24px" : "30px", transition: "height 0.3s ease", filter: "var(--logo-filter)" }} />
         </Link>
 
         {/* Desktop nav */}

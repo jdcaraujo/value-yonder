@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { SpaceBackground } from "@/components/space-background";
 import { Analytics } from "@/components/analytics";
+import { withBase } from "@/lib/base-path";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://valueyonder.com"),
   title: "Value Yonder — Daniel Araújo",
   description: "AI product leader. Former founder. Writing about what I'm learning.",
-  icons: { icon: "/favicon.svg", apple: "/apple-touch-icon.png" },
+  icons: { icon: withBase("/favicon.svg"), apple: withBase("/apple-touch-icon.png") },
   alternates: {
     types: { "application/rss+xml": "/index.xml" },
   },

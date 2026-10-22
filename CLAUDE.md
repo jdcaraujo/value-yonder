@@ -14,8 +14,8 @@ Daniel's personal site: essays, thoughts, photo galleries and a reading log. Liv
 - **Content lives in this repo:** markdown with Hugo-style TOML frontmatter in `content/`
   (`essays/<section>/`, `thoughts/`, `seeing/`), plus `data/books.json`, `data/projects/`, `data/thinking.json`.
   The old Hugo site is retired; its full history is a git bundle in `~/Backups/2026-10-reorg/value-yonder-repos/`.
-- `drafts/` holds old Hugo essays that were never carried over. They are not published; ask Daniel before
-  moving any of them into `content/`.
+- Five old Hugo essays that were never carried over live in the Obsidian vault under
+  `Value Yonder/Drafts/` (two were never published). Ask Daniel before moving any into `content/`.
 
 ## Commands
 
